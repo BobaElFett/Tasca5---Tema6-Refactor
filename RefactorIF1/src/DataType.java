@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class DataType {
     public static void main(String[] args) {
         System.out.println(DataType.gd(20));
@@ -6,35 +8,19 @@ public class DataType {
     }
 
     public static String gd(int code) {
-        switch (code) {
-            case 702:
-            case 1082:
-            case 1083:
-            case 1114:
-            case 1184:
-            case 1266:
-            case 12403:
-                return "DATE";
-            case 20:
-            case 21:
-            case 23:
-            case 24:
-            case 26:
-            case 700:
-            case 701:
-            case 790:
-            case 1700:
-            case 2202:
-            case 2203:
-            case 2204:
-            case 2205:
-            case 2206:
-            case 3734:
-            case 3769:
-            case 12396:
-                return "NUMERIC";
-            default:
-                return "STRING";
+        int[] dateCodes = {702, 1082, 1083, 1114, 1184, 1266, 12403};
+        int[] numericCodes = {20, 21, 23, 24, 26, 700, 701, 790, 1700, 2202, 2203, 2204, 2205, 2206, 3734, 3769, 12396};
+
+        if (contains(dateCodes, code)) {
+            return "DATE";
+        } else if (contains(numericCodes, code)) {
+            return "NUMERIC";
+        } else {
+            return "STRING";
         }
+    }
+
+    public static boolean contains(int[] array, int code) {
+        return Arrays.stream(array).anyMatch(x -> x == code);
     }
 }
